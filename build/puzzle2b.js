@@ -47,26 +47,3 @@ function puzzleDay2a() {
     return correctOnes;
 }
 console.log(puzzleDay2a());
-/*
-3-4 l: vdcv 0
-6-9 d: ddddd kzdl 0
-6-13 f: mfswq frqff rvfvf 0
-10-12 l: sfzln wcptl nlflq 0
-2-4 m: qbwcmt 0
-
-15-16 v: vvvvv vvvnv vvvcv vvvgv 0
-1-4 n: wnnzf ln 0
-1-3 x: xxgx 1
-7-8 j: jjjjj fvh 0
-6-8 x: xxzxx nnwx 0
-
-3-8 t: djtdz nbtgw trhxf 0
-7-9 w: glwww wxtxw lwwwc p 0
-4-5 g: jggjt gggg 0
-9-10 c: trgjr cbfcw f 1
-9-10 v: vvvbv mvcvv vv 0
-
-
-
-
-*/ 
