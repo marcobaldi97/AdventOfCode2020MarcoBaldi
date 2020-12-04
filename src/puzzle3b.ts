@@ -1,3 +1,5 @@
+import { stringify } from "querystring";
+
 function puzzleDay3aImproved(steps:number, downNumber: number){
     let fs = require('fs');
     let myLines: string[] = fs.readFileSync('./input/inputDay3.txt').toString().split("\r\n");
@@ -16,5 +18,6 @@ function puzzleDay3aImproved(steps:number, downNumber: number){
 function puzzleDay3b(){
     let product = puzzleDay3aImproved(1,1)*puzzleDay3aImproved(3,1)*puzzleDay3aImproved(5,1)*puzzleDay3aImproved(7,1)*puzzleDay3aImproved(1,2);
     return product;
+    
 };
 console.log(puzzleDay3b());

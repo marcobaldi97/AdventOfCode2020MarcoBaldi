@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function puzzleDay3aImproved(steps, downNumber) {
     var fs = require('fs');
     var myLines = fs.readFileSync('./input/inputDay3.txt').toString().split("\r\n");
@@ -13,12 +14,6 @@ function puzzleDay3aImproved(steps, downNumber) {
             treesNumber++;
         position = position + steps;
     }
-    /*myLines.forEach(currentItem => {
-        let currentLine: string[] = currentItem.split('');
-        position = position % singleLineLength;
-        if (currentLine[position] == '#') treesNumber++;
-        position = position + steps;
-    });*/
     return treesNumber;
 }
 ;
