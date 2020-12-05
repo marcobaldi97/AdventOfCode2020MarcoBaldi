@@ -2,3 +2,5 @@
 build/wordCounter.js
 input/textitoAContar.txt
 src/wordCounter.ts
+src/test.ts
+input/inputExample.txt

@@ -7,8 +7,6 @@ function puzzleDay4b() {
     var myPassportsLanes = [];
     var allLanes = ' ';
     myPassportsLanes.push('');
-    var j = 0;
-    //for(let i = 0; i<11;i++){
     for (var i = 0; i < myLines.length; i++) {
         if (myLines[i].charAt(0) == '') {
             allLanes = allLanes + '\r\n';
@@ -21,7 +19,6 @@ function puzzleDay4b() {
     var correctPassports = 0;
     var counter = 0;
     myPassportsLanes.forEach(function (currentItem) {
-        console.log('Esta es la iteracion numero: ' + counter);
         counter++;
         var passPortsElements = 0;
         var cidIsHere = false;
@@ -29,7 +26,9 @@ function puzzleDay4b() {
         var separateElementsBySpace = currentItem.split(' ');
         var nothingCorrection = 2;
         passPortsElements = separateElementsBySpace.length;
-        separateElementsBySpace.forEach(function (currentItem) {
+        var index = 0;
+        while (index < separateElementsBySpace.length && thisIsValid) {
+            currentItem = separateElementsBySpace[index];
             var separateElementsByDoubleStops = currentItem.split(':');
             switch (separateElementsByDoubleStops[0]) {
                 case 'cid':
@@ -64,8 +63,6 @@ function puzzleDay4b() {
                     var hairColor = separateElementsByDoubleStops[1];
                     if (!(verifyHairColor(hairColor)))
                         thisIsValid = false;
-                    console.log('Inside hcl :' + thisIsValid);
-                    ;
                     break;
                 case 'ecl':
                     var eyeColor = separateElementsByDoubleStops[1];
@@ -76,20 +73,19 @@ function puzzleDay4b() {
                     var passportId = separateElementsByDoubleStops[1];
                     if (!(passportId.length == 9))
                         thisIsValid = false;
-                    console.log(thisIsValid);
                     break;
                 default:
             }
             ;
-        });
+            index++;
+        }
+        ;
         if (passPortsElements - nothingCorrection == 8 && thisIsValid == true) {
             correctPassports++;
-            console.log('here!');
         }
         ;
         if ((passPortsElements - nothingCorrection == 7 && cidIsHere == false) && thisIsValid == true) {
             correctPassports++;
-            console.log('Actually here!' + thisIsValid);
         }
         ;
     });
@@ -139,4 +135,8 @@ function verifyHairColor(param) {
 }
 ;
 console.log('-------------Begin------------------------------Begin------------------');
+var performance = require('perf_hooks').performance;
+var t0 = performance.now();
 console.log(puzzleDay4b());
+var t1 = performance.now();
+console.log('The time was: ' + (t1 - t0));

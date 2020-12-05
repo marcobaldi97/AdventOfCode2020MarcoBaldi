@@ -1,5 +1,6 @@
 "use strict";
 
+import { sep } from "path";
 import { allowedNodeEnvironmentFlags } from "process";
 
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -9,8 +10,6 @@ function puzzleDay4b() {
     let myPassportsLanes:String[] = [];
     let allLanes:string = ' ';
     myPassportsLanes.push('');
-    let j=0;
-    //for(let i = 0; i<11;i++){
     for(let i = 0; i<myLines.length;i++){
         if(myLines[i].charAt(0)==''){
             allLanes= allLanes +'\r\n';
@@ -21,7 +20,6 @@ function puzzleDay4b() {
     let correctPassports=0;
     let counter = 0;
     myPassportsLanes.forEach(currentItem => {
-        console.log('Esta es la iteracion numero: '+counter);
         counter++;
         let passPortsElements = 0;
         let cidIsHere:boolean = false;
@@ -29,7 +27,9 @@ function puzzleDay4b() {
         let separateElementsBySpace:string[] = currentItem.split(' ');
         let nothingCorrection = 2;
         passPortsElements = separateElementsBySpace.length;
-        separateElementsBySpace.forEach(currentItem => {
+        let index:number = 0;
+        while(index < separateElementsBySpace.length && thisIsValid){
+            currentItem = separateElementsBySpace[index];
             let separateElementsByDoubleStops = currentItem.split(':');
             switch (separateElementsByDoubleStops[0]) {
                 case 'cid':
@@ -68,14 +68,13 @@ function puzzleDay4b() {
                     break;
                 default:
             };
-        });
+            index++;
+        };
         if(passPortsElements-nothingCorrection == 8 && thisIsValid==true) {
             correctPassports++
-            console.log('here!');
         };
         if((passPortsElements-nothingCorrection == 7 && cidIsHere == false) && thisIsValid==true){
             correctPassports++;
-            console.log('Actually here!'+thisIsValid);
         }; 
     });
     return correctPassports;
@@ -120,6 +119,12 @@ function verifyHairColor(param:string){
 };
 
 console.log('-------------Begin------------------------------Begin------------------');
+const { performance } = require('perf_hooks');
+let t0:number = performance.now();
 console.log(puzzleDay4b());
+let t1:number = performance.now();
+console.log('The time was: '+ (t1-t0));
+
+
 
 
