@@ -1,4 +1,3 @@
-"use strict";
 function puzzleDay5a() {
     var fs = require('fs');
     var myLines = fs.readFileSync('./input/inputDay5.txt').toString().split("\r\n");

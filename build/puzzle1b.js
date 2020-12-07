@@ -1,4 +1,3 @@
-"use strict";
 function puzzleDay1b() {
     var performance = require('perf_hooks').performance;
     var myNumbers = [1509,
