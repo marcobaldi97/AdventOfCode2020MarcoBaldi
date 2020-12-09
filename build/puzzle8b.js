@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 function puzzleDay8b() {
     var fs = require('fs');
     var myLines = fs.readFileSync('./input/inputDay8.txt').toString().split("\r\n");
@@ -114,25 +112,3 @@ function puzzleDay8b() {
 }
 console.log('-------------------------------------Begin--------------------------------------------------');
 console.log('The acumulator ends in: ' + puzzleDay8b());
-/*function simulateCode(index:number, acum:number, jmpAhead:number):number{
-    if (index >= myInstructions.length) {
-        console.log(myInstructions);
-        console.log('The final index is '+ index--);
-        return acum;
-    } else {
-        switch (myInstructions[index].instruction) {
-            case 'nop':
-                return simulateCode(index+1,acum,jmpAhead);
-            case 'acc':
-                return simulateCode(index+1,acum+myInstructions[index].parameter,jmpAhead);
-            case 'jmp':
-                console.log(jmpAhead);
-                if (jmpAhead + myInstructions[index].parameter <= 0){
-                    myInstructions[index].setInstruction('nop');
-                    console.log('hi');
-                    return simulateCode(index, acum, jmpAhead);
-                };
-                return simulateCode(index+myInstructions[index].parameter, acum,jmpAhead+myInstructions[index].parameter);
-        };
-    };
-};This aproach is misguided*/ 
