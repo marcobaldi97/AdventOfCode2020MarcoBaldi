@@ -37,7 +37,7 @@ function puzzle10a(input) {
     return diffsOf1 * diffsOf3;
 }
 ;
-function loadNumberArrayFromInput(fileName) {
+function loadNumberArrayFromInput2(fileName) {
     var fs = require('fs');
     var myLines = fs.readFileSync('./input/' + fileName + '.txt').toString().split("\r\n");
     var aux = [];
@@ -46,6 +46,6 @@ function loadNumberArrayFromInput(fileName) {
     });
     return aux;
 }
-var inputUnsortedInString = loadNumberArrayFromInput('inputDay10');
+var inputUnsortedInString = loadNumberArrayFromInput2('inputDay10');
 inputUnsortedInString.sort(function (a, b) { return a - b; });
 console.log(puzzle10a(inputUnsortedInString));

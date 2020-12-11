@@ -32,7 +32,7 @@ function puzzle10a(input:number[]):number{
     //console.log('The differences of 3 are: '+diffsOf3+' and the differences of 1 are: '+diffsOf1);
     return diffsOf1*diffsOf3;
 };
-function loadNumberArrayFromInput(fileName:string):number[]{
+function loadNumberArrayFromInput2(fileName:string):number[]{
     let fs = require('fs');
     let myLines:string[] = fs.readFileSync('./input/'+fileName+'.txt').toString().split("\r\n");
     let aux:number[] = [];
@@ -41,6 +41,6 @@ function loadNumberArrayFromInput(fileName:string):number[]{
     });
     return aux;
 }
-const inputUnsortedInString:number[] = loadNumberArrayFromInput('inputDay10'); 
+const inputUnsortedInString:number[] = loadNumberArrayFromInput2('inputDay10'); 
 inputUnsortedInString.sort((a,b) => a - b );
 console.log(puzzle10a(inputUnsortedInString));
