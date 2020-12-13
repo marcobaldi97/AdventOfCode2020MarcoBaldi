@@ -6,3 +6,4 @@ src/test.ts
 input/inputExample.txt
 src/flotanteADecimal.ts
 build/flotanteADecimal.js
+build/inpute12b.js

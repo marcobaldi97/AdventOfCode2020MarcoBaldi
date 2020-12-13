@@ -95,6 +95,7 @@ function puzzle11bMagic(myLines) {
     });
     return myLines;
 }
+;
 function puzzle11b() {
     var fs = require('fs');
     var myLines = fs.readFileSync('./input/inputDay11.txt').toString().split("\r\n");
