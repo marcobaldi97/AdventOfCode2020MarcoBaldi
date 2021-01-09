@@ -1,11 +1,11 @@
 function puzzleDay3a() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay3.txt').toString().split("\r\n");
-    var singleLineLength = myLines[0].length;
-    var position = 0;
-    var treesNumber = 0;
-    myLines.forEach(function (currentItem) {
-        var currentLine = currentItem.split('');
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay3.txt').toString().split("\r\n");
+    let singleLineLength = myLines[0].length;
+    let position = 0;
+    let treesNumber = 0;
+    myLines.forEach(currentItem => {
+        let currentLine = currentItem.split('');
         position = position % singleLineLength;
         if (currentLine[position] == '#')
             treesNumber++;

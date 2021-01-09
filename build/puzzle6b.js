@@ -1,11 +1,11 @@
 function puzzleDay6b() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay6.txt').toString().split("\r\n");
-    var myRegistryLanes = [];
-    var allLanes = ' ';
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay6.txt').toString().split("\r\n");
+    let myRegistryLanes = [];
+    let allLanes = ' ';
     myRegistryLanes.push('');
-    var j = 0;
-    for (var i = 0; i < myLines.length; i++) {
+    let j = 0;
+    for (let i = 0; i < myLines.length; i++) {
         if (myLines[i].charAt(0) == '') {
             allLanes = allLanes + '\r\n';
         }
@@ -19,15 +19,15 @@ function puzzleDay6b() {
         ;
     }
     myRegistryLanes = allLanes.split('\r\n');
-    var result = 0;
-    myRegistryLanes.forEach(function (currentItem) {
-        var lettersYes = [];
+    let result = 0;
+    myRegistryLanes.forEach(currentItem => {
+        let lettersYes = [];
         currentItem = currentItem.trim();
-        var myLinesGroups = currentItem.split(' ');
-        var counter = 0;
-        myLinesGroups.forEach(function (currentItem) {
-            var currentYes = [];
-            for (var i = 0; i < currentItem.length; i++) {
+        let myLinesGroups = currentItem.split(' ');
+        let counter = 0;
+        myLinesGroups.forEach(currentItem => {
+            let currentYes = [];
+            for (let i = 0; i < currentItem.length; i++) {
                 if (counter == 0) {
                     lettersYes.push(currentItem.charAt(i));
                     currentYes.push(currentItem.charAt(i));
@@ -38,7 +38,7 @@ function puzzleDay6b() {
                 ;
             }
             ;
-            lettersYes = lettersYes.filter(function (value) { return currentYes.includes(value); });
+            lettersYes = lettersYes.filter(value => currentYes.includes(value));
             counter++;
         });
         result = result + lettersYes.length;

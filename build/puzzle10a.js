@@ -1,11 +1,11 @@
 function puzzle10a(input) {
-    var diffsOf3 = 0;
-    var diffsOf2 = 0;
-    var diffsOf1 = 0;
-    var adaptersSelected = [];
-    var possibleAdaptersToRemove = [];
-    var currentJolt = 0;
-    for (var i = 0; i < input.length; i++) {
+    let diffsOf3 = 0;
+    let diffsOf2 = 0;
+    let diffsOf1 = 0;
+    let adaptersSelected = [];
+    let possibleAdaptersToRemove = [];
+    let currentJolt = 0;
+    for (let i = 0; i < input.length; i++) {
         if (input[i] - currentJolt < 4) {
             if ((input[i] - currentJolt) == 1) {
                 diffsOf1++;
@@ -38,14 +38,14 @@ function puzzle10a(input) {
 }
 ;
 function loadNumberArrayFromInput2(fileName) {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/' + fileName + '.txt').toString().split("\r\n");
-    var aux = [];
-    myLines.forEach(function (currentItem) {
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/' + fileName + '.txt').toString().split("\r\n");
+    let aux = [];
+    myLines.forEach(currentItem => {
         aux.push(parseInt(currentItem));
     });
     return aux;
 }
-var inputUnsortedInString = loadNumberArrayFromInput2('inputDay10');
-inputUnsortedInString.sort(function (a, b) { return a - b; });
+const inputUnsortedInString = loadNumberArrayFromInput2('inputDay10');
+inputUnsortedInString.sort((a, b) => a - b);
 console.log(puzzle10a(inputUnsortedInString));

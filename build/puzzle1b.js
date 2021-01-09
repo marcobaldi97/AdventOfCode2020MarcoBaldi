@@ -1,6 +1,6 @@
 function puzzleDay1b() {
-    var performance = require('perf_hooks').performance;
-    var myNumbers = [1509,
+    const { performance } = require('perf_hooks');
+    let myNumbers = [1509,
         1857,
         1736,
         1815,
@@ -201,19 +201,19 @@ function puzzleDay1b() {
         1864,
         1702];
     console.log('Hi!');
-    var t0 = performance.now();
-    var flag = true;
-    var i = 0;
-    var j = 0;
-    var k = 0;
-    var res = 0;
-    myNumbers = myNumbers.sort(function (a, b) { return a - b; });
+    let t0 = performance.now();
+    let flag = true;
+    let i = 0;
+    let j = 0;
+    let k = 0;
+    let res = 0;
+    myNumbers = myNumbers.sort((a, b) => a - b);
     while (flag && i < myNumbers.length && myNumbers[i] < 2021) {
         j = 0;
         while (flag && j < myNumbers.length && myNumbers[i] + myNumbers[j] < 2021) {
             k = 0;
             while (flag && k < myNumbers.length && myNumbers[i] + myNumbers[j] + myNumbers[k] < 2021) {
-                var sum = myNumbers[i] + myNumbers[j];
+                let sum = myNumbers[i] + myNumbers[j];
                 sum = sum + myNumbers[k];
                 if (sum == 2020) {
                     res = myNumbers[i] * myNumbers[j];
@@ -228,7 +228,7 @@ function puzzleDay1b() {
     }
     console.log('The Answer is: ' + res);
     console.log(myNumbers[i - 1] + ' ' + myNumbers[j - 1] + ' ' + myNumbers[k - 1]);
-    var t1 = performance.now();
+    let t1 = performance.now();
     console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.");
     return res;
 }

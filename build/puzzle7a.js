@@ -1,15 +1,15 @@
 function puzzleDay7a() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay7.txt').toString().split("\r\n");
-    var myBags = new Map();
-    myLines.forEach(function (currentItem) {
-        var firstSplit = currentItem.split(' contain ');
-        var bagName = firstSplit[0].replace(' bags', ' bag');
-        var bagContentsPreSplit = firstSplit[1];
-        var bagContentsPre = bagContentsPreSplit.split(', ');
-        var bagContents = [];
-        for (var i = 0; i < bagContentsPre.length; i++) {
-            var currentSubBag = bagContentsPre[i];
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay7.txt').toString().split("\r\n");
+    let myBags = new Map();
+    myLines.forEach(currentItem => {
+        let firstSplit = currentItem.split(' contain ');
+        let bagName = firstSplit[0].replace(' bags', ' bag');
+        let bagContentsPreSplit = firstSplit[1];
+        let bagContentsPre = bagContentsPreSplit.split(', ');
+        let bagContents = [];
+        for (let i = 0; i < bagContentsPre.length; i++) {
+            let currentSubBag = bagContentsPre[i];
             currentSubBag = currentSubBag.replace(/\d+/g, '');
             currentSubBag = currentSubBag.replace('.', '');
             currentSubBag = currentSubBag.replace(' bags', ' bag');
@@ -19,27 +19,27 @@ function puzzleDay7a() {
         ;
         myBags.set(bagName, bagContents);
     });
-    var result = 0;
+    let result = 0;
     function searchMapitaForBag(itemToSearch, values) {
         if ((values.length == 1 && values[0] == itemToSearch) || (values.includes(itemToSearch))) {
             return true;
         }
         else {
-            var flag_1 = false;
-            values.forEach(function (currentItem) {
+            let flag = false;
+            values.forEach(currentItem => {
                 if (myBags.has(currentItem)) {
-                    flag_1 = flag_1 || searchMapitaForBag(itemToSearch, myBags.get(currentItem));
+                    flag = flag || searchMapitaForBag(itemToSearch, myBags.get(currentItem));
                 }
                 else {
-                    flag_1 = flag_1 || false;
+                    flag = flag || false;
                 }
             });
-            return flag_1;
+            return flag;
         }
     }
     ;
     myBags.forEach(function (value, key) {
-        var flag = searchMapitaForBag('shiny gold bag', value);
+        let flag = searchMapitaForBag('shiny gold bag', value);
         if (flag == true)
             result++;
     });

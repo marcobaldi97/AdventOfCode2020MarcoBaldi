@@ -1,22 +1,22 @@
 function puzzle11bMagic(myLines) {
-    var myNewLines = [];
+    let myNewLines = [];
     console.log(myLines);
-    for (var i = 0; i < myLines.length; i++) {
-        var individualItems = myLines[i].split('');
-        var newLine = '';
-        for (var j = 0; j < myLines[i].length; j++) {
-            var itemToEvaluate = individualItems[j];
-            var arrayToSearch = [];
+    for (let i = 0; i < myLines.length; i++) {
+        let individualItems = myLines[i].split('');
+        let newLine = '';
+        for (let j = 0; j < myLines[i].length; j++) {
+            let itemToEvaluate = individualItems[j];
+            let arrayToSearch = [];
             arrayToSearch = [[i + 1, j + 1], [i + 1, j], [i, j + 1], [i - 1, j - 1], [i - 1, j], [i, j - 1], [i - 1, j + 1], [i + 1, j - 1]];
-            var foundOccupied = false;
-            var counterOccupied = 0;
-            var k = 0;
+            let foundOccupied = false;
+            let counterOccupied = 0;
+            let k = 0;
             while (k < arrayToSearch.length) {
-                var currentSearchItem = arrayToSearch[k];
+                let currentSearchItem = arrayToSearch[k];
                 if (0 <= currentSearchItem[0] && currentSearchItem[0] <= myLines.length - 1) {
                     if (0 <= currentSearchItem[1] && currentSearchItem[1] <= myLines[i].length - 1) {
-                        var aux = myLines[currentSearchItem[0]].split('');
-                        var iToEval = aux[currentSearchItem[1]];
+                        let aux = myLines[currentSearchItem[0]].split('');
+                        let iToEval = aux[currentSearchItem[1]];
                         if (iToEval == '#') {
                             foundOccupied = true;
                             counterOccupied++;
@@ -90,24 +90,24 @@ function puzzle11bMagic(myLines) {
     ;
     myLines = myNewLines;
     console.log('This is the result-------------------------------------------------------------------------');
-    myLines.forEach(function (currentItem) {
+    myLines.forEach(currentItem => {
         console.log(currentItem);
     });
     return myLines;
 }
 ;
 function puzzle11b() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay11.txt').toString().split("\r\n");
-    var antCount = 1;
-    var counter = 0;
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay11.txt').toString().split("\r\n");
+    let antCount = 1;
+    let counter = 0;
     while (counter != antCount) {
         antCount = counter;
         counter = 0;
         myLines = puzzle11bMagic(myLines);
-        myLines.forEach(function (currentItem) {
-            var aux = currentItem.split('');
-            aux.forEach(function (currentItemAux) {
+        myLines.forEach(currentItem => {
+            let aux = currentItem.split('');
+            aux.forEach(currentItemAux => {
                 if (currentItemAux == '#')
                     counter++;
             });

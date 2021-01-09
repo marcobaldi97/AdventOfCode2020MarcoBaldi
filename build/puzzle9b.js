@@ -1,10 +1,10 @@
 function puzzleDay9b(preamble) {
     function isThisNumberAnAddOfList(numberToTest, numbersToAdd) {
-        var sums = [];
-        for (var i = 0; i < numbersToAdd.length; i++) {
-            var leftNumber = numbersToAdd[i];
-            for (var j_1 = i + 1; j_1 < numbersToAdd.length; j_1++) {
-                sums.push(leftNumber + numbersToAdd[j_1]);
+        let sums = [];
+        for (let i = 0; i < numbersToAdd.length; i++) {
+            let leftNumber = numbersToAdd[i];
+            for (let j = i + 1; j < numbersToAdd.length; j++) {
+                sums.push(leftNumber + numbersToAdd[j]);
             }
             ;
         }
@@ -18,14 +18,14 @@ function puzzleDay9b(preamble) {
         ;
     }
     ;
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay9.txt').toString().split("\r\n");
-    var j = 0;
-    var evaluator = true;
-    var resultPartA = 0;
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay9.txt').toString().split("\r\n");
+    let j = 0;
+    let evaluator = true;
+    let resultPartA = 0;
     while (evaluator == true) {
-        var preambleNumbers = [];
-        var i = j;
+        let preambleNumbers = [];
+        let i = j;
         while (i < preamble + j) {
             preambleNumbers.push(parseInt(myLines[i]));
             i++;
@@ -37,15 +37,15 @@ function puzzleDay9b(preamble) {
         j++;
     }
     ;
-    var myLinesInt = [];
-    myLines.forEach(function (currentItem) {
+    let myLinesInt = [];
+    myLines.forEach(currentItem => {
         myLinesInt.push(parseInt(currentItem));
     });
     function searchContiguosAddToNumber(start, arrayToSearch, numberToSum) {
-        var currentAdd = 0;
-        var addedNumbers = [];
-        var notEncountered = true;
-        var index = start;
+        let currentAdd = 0;
+        let addedNumbers = [];
+        let notEncountered = true;
+        let index = start;
         while (index < arrayToSearch.length && notEncountered) {
             if (arrayToSearch[index] != numberToSum) {
                 currentAdd = currentAdd + arrayToSearch[index];
@@ -57,9 +57,9 @@ function puzzleDay9b(preamble) {
             index++;
         }
         ;
-        addedNumbers.sort(function (a, b) { return a - b; });
+        addedNumbers.sort((a, b) => a - b);
         if (notEncountered == false) {
-            var returnArray = [];
+            let returnArray = [];
             returnArray.push(addedNumbers[0]);
             returnArray.push(addedNumbers[addedNumbers.length - 1]);
             return returnArray;
@@ -70,17 +70,17 @@ function puzzleDay9b(preamble) {
         ;
     }
     ;
-    var theFinalCut = searchContiguosAddToNumber(0, myLinesInt, resultPartA);
+    let theFinalCut = searchContiguosAddToNumber(0, myLinesInt, resultPartA);
     console.log('The min is ' + theFinalCut[0] + ' and the max ' + theFinalCut[1]);
     return theFinalCut[0] + theFinalCut[1];
 }
 ;
 console.log('------------------------------------------------------');
 function test9b() {
-    var performance = require('perf_hooks').performance;
-    var ti = performance.now();
+    const { performance } = require('perf_hooks');
+    let ti = performance.now();
     console.log(puzzleDay9b(25));
-    var tf = performance.now();
+    let tf = performance.now();
     console.log('The time was: ' + (tf - ti));
 }
 test9b();

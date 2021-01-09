@@ -1,39 +1,38 @@
 function puzzleDay8b() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay8.txt').toString().split("\r\n");
-    var SingleInstruction = /** @class */ (function () {
-        function SingleInstruction(ins, par) {
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay8.txt').toString().split("\r\n");
+    class SingleInstruction {
+        constructor(ins, par) {
             this.instruction = ins;
             this.parameter = par;
         }
-        SingleInstruction.prototype.setInstruction = function (nins) {
+        setInstruction(nins) {
             this.instruction = nins;
-        };
-        return SingleInstruction;
-    }());
+        }
+    }
     ;
-    var myInstructions = [];
-    myLines.forEach(function (currentItem) {
+    let myInstructions = [];
+    myLines.forEach(currentItem => {
         currentItem = currentItem.trim();
-        var splittedIns = currentItem.split(' ');
-        var instructionToAdd = new SingleInstruction(splittedIns[0], parseInt(splittedIns[1]));
+        let splittedIns = currentItem.split(' ');
+        let instructionToAdd = new SingleInstruction(splittedIns[0], parseInt(splittedIns[1]));
         myInstructions.push(instructionToAdd);
     }); //The saving is correct.
     function getAllFalseArray(root) {
-        var aux = [];
-        root.forEach(function (currentItem) {
+        let aux = [];
+        root.forEach(currentItem => {
             aux.push(false);
         });
         return aux;
     }
-    var lineChecker = [];
-    myInstructions.forEach(function (currentItem) {
+    let lineChecker = [];
+    myInstructions.forEach(currentItem => {
         lineChecker.push(false);
     }); //initialize lineChecker with false for each of my instructions
     function simulateCode(index, acum, miIns, lineC, prevIndex) {
         if (index < lineC.length) {
             if (lineC[index]) {
-                var response = [];
+                let response = [];
                 response.push(acum);
                 response.push(prevIndex);
                 return response;
@@ -54,42 +53,42 @@ function puzzleDay8b() {
             ;
         }
         else {
-            var response = [];
+            let response = [];
             response.push(acum);
             response.push(index);
             return response;
         }
     }
     ;
-    var instructionsToChange = [];
-    var counter = 0;
-    myInstructions.forEach(function (currentItem) {
+    let instructionsToChange = [];
+    let counter = 0;
+    myInstructions.forEach(currentItem => {
         if (currentItem.instruction == 'jmp' || currentItem.instruction == 'nop')
             instructionsToChange.push(counter);
         counter++;
     }); //load the instructions to change.
-    var lastIndex = 0;
-    var instructionToChangeIndex = 0;
-    var resultArray = [];
-    var _loop_1 = function () {
+    let lastIndex = 0;
+    let instructionToChangeIndex = 0;
+    let resultArray = [];
+    while (lastIndex < myInstructions.length && instructionToChangeIndex < instructionsToChange.length) {
         console.log('Testing changing the line :' + instructionsToChange[instructionToChangeIndex]);
-        var auxFalseArray = getAllFalseArray(lineChecker);
-        var mCI = [];
-        var i = 0;
-        myInstructions.forEach(function (currentItem) {
+        let auxFalseArray = getAllFalseArray(lineChecker);
+        let mCI = [];
+        let i = 0;
+        myInstructions.forEach(currentItem => {
             if (i == instructionsToChange[instructionToChangeIndex]) {
                 switch (currentItem.instruction) {
                     case 'nop':
                         if (currentItem.parameter != 0) {
-                            var aux_1 = new SingleInstruction('jmp', currentItem.parameter);
-                            mCI.push(aux_1);
+                            let aux = new SingleInstruction('jmp', currentItem.parameter);
+                            mCI.push(aux);
                         }
                         else {
                             mCI.push(currentItem);
                         }
                         break;
                     case 'jmp':
-                        var aux = new SingleInstruction('nop', currentItem.parameter);
+                        let aux = new SingleInstruction('nop', currentItem.parameter);
                         mCI.push(aux);
                         break;
                 }
@@ -102,9 +101,6 @@ function puzzleDay8b() {
         resultArray = simulateCode(0, 0, mCI, auxFalseArray, 0);
         lastIndex = resultArray[1];
         instructionToChangeIndex++;
-    };
-    while (lastIndex < myInstructions.length && instructionToChangeIndex < instructionsToChange.length) {
-        _loop_1();
     }
     ;
     console.log('The search stopped at : ' + resultArray[1]);

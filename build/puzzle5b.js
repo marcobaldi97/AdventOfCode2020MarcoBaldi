@@ -1,39 +1,39 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function puzzleDay5b() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay5.txt').toString().split("\r\n");
-    var result = 0;
-    var resultValues = [];
-    var numbers = [];
-    for (var i_1 = 0; i_1 < 128; i_1++) {
-        numbers.push(i_1);
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay5.txt').toString().split("\r\n");
+    let result = 0;
+    let resultValues = [];
+    let numbers = [];
+    for (let i = 0; i < 128; i++) {
+        numbers.push(i);
     } //The front row and the back row does not actually exists.
-    myLines.forEach(function (currentItem) {
-        var numbers2 = [0, 1, 2, 3, 4, 5, 6, 7];
-        var myRows = [];
-        var myColumns = [];
-        for (var i_2 = 0; i_2 < currentItem.length; i_2++) {
-            if (i_2 < currentItem.length - 3) {
-                myRows.push(currentItem.charAt(i_2));
+    myLines.forEach(currentItem => {
+        let numbers2 = [0, 1, 2, 3, 4, 5, 6, 7];
+        let myRows = [];
+        let myColumns = [];
+        for (let i = 0; i < currentItem.length; i++) {
+            if (i < currentItem.length - 3) {
+                myRows.push(currentItem.charAt(i));
             }
             else {
-                myColumns.push(currentItem.charAt(i_2));
+                myColumns.push(currentItem.charAt(i));
             }
         }
-        var x = recursiveSearch(0, myRows, numbers);
-        var y = recursiveSearch(0, myColumns, numbers2);
+        let x = recursiveSearch(0, myRows, numbers);
+        let y = recursiveSearch(0, myColumns, numbers2);
         result = x * 8 + y;
         if (x > 0 && x < 127 && result > 5 && result < 1016)
             resultValues.push(result);
     });
     result = 0;
-    var lastItem = 0;
-    resultValues.sort(function (a, b) { return a - b; });
-    var wflag = true;
-    var i = 21;
+    let lastItem = 0;
+    resultValues.sort((a, b) => a - b);
+    let wflag = true;
+    let i = 21;
     while (i < 997 && wflag) {
-        var j = i - 21;
+        let j = i - 21;
         if (resultValues[j] != i) {
             result = i;
             wflag = false;
@@ -49,9 +49,9 @@ function recursiveSearch(index, data, numbers) {
     switch (data[index]) {
         case 'F': {
             index++;
-            var nextNumbers = [];
-            var newSize = numbers.length / 2;
-            for (var i = 0; i < newSize; i++) {
+            let nextNumbers = [];
+            let newSize = numbers.length / 2;
+            for (let i = 0; i < newSize; i++) {
                 nextNumbers.push(numbers[i]);
             }
             ;
@@ -60,9 +60,9 @@ function recursiveSearch(index, data, numbers) {
         }
         case 'B': {
             index++;
-            var nextNumbers = [];
-            var newSize = numbers.length / 2;
-            for (var i = newSize; i < numbers.length; i++) {
+            let nextNumbers = [];
+            let newSize = numbers.length / 2;
+            for (let i = newSize; i < numbers.length; i++) {
                 nextNumbers.push(numbers[i]);
             }
             ;
@@ -71,9 +71,9 @@ function recursiveSearch(index, data, numbers) {
         }
         case 'L': {
             index++;
-            var nextNumbers = [];
-            var newSize = numbers.length / 2;
-            for (var i = 0; i < newSize; i++) {
+            let nextNumbers = [];
+            let newSize = numbers.length / 2;
+            for (let i = 0; i < newSize; i++) {
                 nextNumbers.push(numbers[i]);
             }
             ;
@@ -82,9 +82,9 @@ function recursiveSearch(index, data, numbers) {
         }
         case 'R': {
             index++;
-            var nextNumbers = [];
-            var newSize = numbers.length / 2;
-            for (var i = newSize; i < numbers.length; i++) {
+            let nextNumbers = [];
+            let newSize = numbers.length / 2;
+            for (let i = newSize; i < numbers.length; i++) {
                 nextNumbers.push(numbers[i]);
             }
             ;
@@ -95,8 +95,8 @@ function recursiveSearch(index, data, numbers) {
     return 0;
 }
 console.log('-------------Begin------------------------------Begin------------------');
-var performance = require('perf_hooks').performance;
-var t0 = performance.now();
+const { performance } = require('perf_hooks');
+let t0 = performance.now();
 console.log(puzzleDay5b());
-var t1 = performance.now();
+let t1 = performance.now();
 console.log('The time was: ' + (t1 - t0));

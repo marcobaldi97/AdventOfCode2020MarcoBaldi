@@ -1,46 +1,45 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function puzzleDay12b(input) {
-    var IndividualInstruction = /** @class */ (function () {
-        function IndividualInstruction(crude) {
+    class IndividualInstruction {
+        constructor(crude) {
             this.ins = crude.charAt(0);
-            var auxVal = '';
-            for (var i = 1; i < crude.length; i++) {
+            let auxVal = '';
+            for (let i = 1; i < crude.length; i++) {
                 auxVal = auxVal + crude.charAt(i);
             }
             ;
             this.val = parseInt(auxVal);
         }
         ;
-        IndividualInstruction.prototype.getIns = function () { return this.ins; };
+        getIns() { return this.ins; }
         ;
-        IndividualInstruction.prototype.getVal = function () { return this.val; };
+        getVal() { return this.val; }
         ;
-        return IndividualInstruction;
-    }());
+    }
     ; //IndividualInstruction end.
-    var ShipPosition = /** @class */ (function () {
-        function ShipPosition(x, y, dir) {
+    class ShipPosition {
+        constructor(x, y, dir) {
             this.x = x;
             this.y = y;
             this.dir = dir;
         }
         ;
-        ShipPosition.prototype.getX = function () { return this.x; };
+        getX() { return this.x; }
         ;
-        ShipPosition.prototype.getY = function () { return this.y; };
+        getY() { return this.y; }
         ;
-        ShipPosition.prototype.setX = function (p) { this.x = p; };
+        setX(p) { this.x = p; }
         ;
-        ShipPosition.prototype.setY = function (p) { this.y = p; };
+        setY(p) { this.y = p; }
         ;
-        ShipPosition.prototype.getDir = function () { return this.dir; };
+        getDir() { return this.dir; }
         ;
-        ShipPosition.prototype.addX = function (p) { this.x = this.x + p; };
+        addX(p) { this.x = this.x + p; }
         ;
-        ShipPosition.prototype.addY = function (p) { this.y = this.y + p; };
+        addY(p) { this.y = this.y + p; }
         ;
-        ShipPosition.prototype.addDir = function (p) {
+        addDir(p) {
             this.dir = this.dir + p;
             if (this.dir < 0) {
                 this.dir = 360 + this.dir;
@@ -50,10 +49,9 @@ function puzzleDay12b(input) {
                 this.dir = this.dir - 360;
             }
             ;
-        };
+        }
         ;
-        return ShipPosition;
-    }());
+    }
     ; //ShipPosition
     function absoluteOf(p) {
         if (p < 0)
@@ -67,21 +65,21 @@ function puzzleDay12b(input) {
     }
     ;
     console.log(absoluteOf(-3));
-    var mySetOfInstructions = [];
-    input.forEach(function (currentInst) {
-        var myIns = new IndividualInstruction(currentInst);
+    let mySetOfInstructions = [];
+    input.forEach(currentInst => {
+        let myIns = new IndividualInstruction(currentInst);
         mySetOfInstructions.push(myIns);
     });
-    var myShip = new ShipPosition(0, 0, 0);
-    var myWaypoint = new ShipPosition(10, 1, 0);
-    mySetOfInstructions.forEach(function (currentInst) {
-        var ins = currentInst.getIns();
-        var val = currentInst.getVal();
+    let myShip = new ShipPosition(0, 0, 0);
+    let myWaypoint = new ShipPosition(10, 1, 0);
+    mySetOfInstructions.forEach(currentInst => {
+        let ins = currentInst.getIns();
+        let val = currentInst.getVal();
         switch (ins) {
             case 'F': //wait a minute
-                for (var i = 0; i < val; i++) {
-                    var diffX = myWaypoint.getX() - myShip.getX();
-                    var diffY = myWaypoint.getY() - myShip.getY();
+                for (let i = 0; i < val; i++) {
+                    let diffX = myWaypoint.getX() - myShip.getX();
+                    let diffY = myWaypoint.getY() - myShip.getY();
                     myShip.addY(diffY);
                     myShip.addX(diffX);
                     myWaypoint.addY(diffY);
@@ -90,11 +88,11 @@ function puzzleDay12b(input) {
                 ;
                 break;
             case 'L': {
-                var degreesRotation = degrees_to_radians(val);
-                var relativeX = myWaypoint.getX() - myShip.getX();
-                var relativeY = myWaypoint.getY() - myShip.getY();
-                var newX = relativeX * Math.cos(degreesRotation) - relativeY * Math.sin(degreesRotation);
-                var newY = relativeX * Math.sin(degreesRotation) + relativeY * Math.cos(degreesRotation);
+                let degreesRotation = degrees_to_radians(val);
+                let relativeX = myWaypoint.getX() - myShip.getX();
+                let relativeY = myWaypoint.getY() - myShip.getY();
+                let newX = relativeX * Math.cos(degreesRotation) - relativeY * Math.sin(degreesRotation);
+                let newY = relativeX * Math.sin(degreesRotation) + relativeY * Math.cos(degreesRotation);
                 newX = Math.round(newX) + myShip.getX();
                 newY = Math.round(newY) + myShip.getY();
                 myWaypoint.setX(newX);
@@ -102,11 +100,11 @@ function puzzleDay12b(input) {
                 break;
             }
             case 'R': {
-                var degreesRotation = degrees_to_radians(-val);
-                var relativeX = myWaypoint.getX() - myShip.getX();
-                var relativeY = myWaypoint.getY() - myShip.getY();
-                var newX = relativeX * Math.cos(degreesRotation) - relativeY * Math.sin(degreesRotation);
-                var newY = relativeX * Math.sin(degreesRotation) + relativeY * Math.cos(degreesRotation);
+                let degreesRotation = degrees_to_radians(-val);
+                let relativeX = myWaypoint.getX() - myShip.getX();
+                let relativeY = myWaypoint.getY() - myShip.getY();
+                let newX = relativeX * Math.cos(degreesRotation) - relativeY * Math.sin(degreesRotation);
+                let newY = relativeX * Math.sin(degreesRotation) + relativeY * Math.cos(degreesRotation);
                 newX = Math.round(newX) + myShip.getX();
                 newY = Math.round(newY) + myShip.getY();
                 myWaypoint.setX(newX);
@@ -134,8 +132,8 @@ function puzzleDay12b(input) {
 }
 ;
 function testDay12b() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay12.txt').toString().split("\r\n");
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay12.txt').toString().split("\r\n");
     console.log('----------------------------------START----------------------------------');
     console.log(puzzleDay12b(myLines));
 }

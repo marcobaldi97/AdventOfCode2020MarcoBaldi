@@ -17,13 +17,13 @@ Count the number of valid passports - those that have all required fields. Treat
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function puzzleDay4a() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay4.txt').toString().split("\r\n");
-    var myPassportsLanes = [];
-    var allLanes = ' ';
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay4.txt').toString().split("\r\n");
+    let myPassportsLanes = [];
+    let allLanes = ' ';
     myPassportsLanes.push('');
-    var j = 0;
-    for (var i = 0; i < myLines.length; i++) {
+    let j = 0;
+    for (let i = 0; i < myLines.length; i++) {
         if (myLines[i].charAt(0) == '') {
             allLanes = allLanes + '\r\n';
         }
@@ -31,18 +31,18 @@ function puzzleDay4a() {
         allLanes = allLanes + ' ' + myLines[i];
     }
     myPassportsLanes = allLanes.split('\r\n');
-    for (var i = 0; i < myPassportsLanes.length; i++) {
+    for (let i = 0; i < myPassportsLanes.length; i++) {
         console.log(myPassportsLanes[i]);
     }
-    var correctPassports = 0;
-    myPassportsLanes.forEach(function (currentItem) {
-        var passPortsElements = 0;
-        var cidIsHere = false;
-        var separateElementsBySpace = currentItem.split(' ');
-        var nothingCorrection = 2;
+    let correctPassports = 0;
+    myPassportsLanes.forEach(currentItem => {
+        let passPortsElements = 0;
+        let cidIsHere = false;
+        let separateElementsBySpace = currentItem.split(' ');
+        let nothingCorrection = 2;
         passPortsElements = separateElementsBySpace.length;
-        separateElementsBySpace.forEach(function (currentItem) {
-            var separateElementsByDoubleStops = currentItem.split(':');
+        separateElementsBySpace.forEach(currentItem => {
+            let separateElementsByDoubleStops = currentItem.split(':');
             if (separateElementsByDoubleStops[0] == 'cid')
                 cidIsHere = true;
         });

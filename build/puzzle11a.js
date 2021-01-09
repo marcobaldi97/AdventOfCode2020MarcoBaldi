@@ -1,20 +1,20 @@
 function puzzle11aMagic(myLines) {
-    var myNewLines = [];
+    let myNewLines = [];
     console.log(myLines);
-    var _loop_1 = function (i) {
-        var individualItems = myLines[i].split('');
-        var newLine = '';
-        var _loop_2 = function (j) {
-            var itemToEvaluate = individualItems[j];
-            var arrayToSearch = [];
+    for (let i = 0; i < myLines.length; i++) {
+        let individualItems = myLines[i].split('');
+        let newLine = '';
+        for (let j = 0; j < myLines[i].length; j++) {
+            let itemToEvaluate = individualItems[j];
+            let arrayToSearch = [];
             arrayToSearch = [[i + 1, j + 1], [i + 1, j], [i, j + 1], [i - 1, j - 1], [i - 1, j], [i, j - 1], [i - 1, j + 1], [i + 1, j - 1]];
-            var foundOccupied = false;
-            var counterOccupied = 0;
-            arrayToSearch.forEach(function (currentSearchItem) {
+            let foundOccupied = false;
+            let counterOccupied = 0;
+            arrayToSearch.forEach(currentSearchItem => {
                 if (0 <= currentSearchItem[0] && currentSearchItem[0] <= myLines.length - 1) {
                     if (0 <= currentSearchItem[1] && currentSearchItem[1] <= myLines[i].length - 1) {
-                        var aux = myLines[currentSearchItem[0]].split('');
-                        var iToEval = aux[currentSearchItem[1]];
+                        let aux = myLines[currentSearchItem[0]].split('');
+                        let iToEval = aux[currentSearchItem[1]];
                         if (iToEval == '#') {
                             foundOccupied = true;
                             counterOccupied++;
@@ -40,36 +40,30 @@ function puzzle11aMagic(myLines) {
             }
             ;
             newLine = newLine.concat(itemToEvaluate);
-        };
-        for (var j = 0; j < myLines[i].length; j++) {
-            _loop_2(j);
         }
         ;
         myNewLines.push(newLine);
-    };
-    for (var i = 0; i < myLines.length; i++) {
-        _loop_1(i);
     }
     ;
     myLines = myNewLines;
     console.log('This is the result-------------------------------------------------------------------------');
-    myLines.forEach(function (currentItem) {
+    myLines.forEach(currentItem => {
         console.log(currentItem);
     });
     return myLines;
 }
 function puzzle11a() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay11.txt').toString().split("\r\n");
-    var antCount = 1;
-    var counter = 0;
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay11.txt').toString().split("\r\n");
+    let antCount = 1;
+    let counter = 0;
     while (counter != antCount) {
         antCount = counter;
         counter = 0;
         myLines = puzzle11aMagic(myLines);
-        myLines.forEach(function (currentItem) {
-            var aux = currentItem.split('');
-            aux.forEach(function (currentItemAux) {
+        myLines.forEach(currentItem => {
+            let aux = currentItem.split('');
+            aux.forEach(currentItemAux => {
                 if (currentItemAux == '#')
                     counter++;
             });

@@ -1,11 +1,11 @@
 function puzzle10b(input) {
-    var diffsOf3 = 0;
-    var diffsOf2 = 0;
-    var diffsOf1 = 0;
-    var adaptersSelected = [];
-    var possibleAdaptersToRemove = [];
-    var currentJolt = 0;
-    for (var i = 0; i < input.length; i++) {
+    let diffsOf3 = 0;
+    let diffsOf2 = 0;
+    let diffsOf1 = 0;
+    let adaptersSelected = [];
+    let possibleAdaptersToRemove = [];
+    let currentJolt = 0;
+    for (let i = 0; i < input.length; i++) {
         if (input[i] - currentJolt < 4) {
             if ((input[i] - currentJolt) == 1) {
                 diffsOf1++;
@@ -29,22 +29,22 @@ function puzzle10b(input) {
     }
     ;
     adaptersSelected.push(0);
-    adaptersSelected.sort(function (a, b) { return a - b; });
+    adaptersSelected.sort((a, b) => a - b);
     adaptersSelected.push(adaptersSelected[adaptersSelected.length - 1] + 3);
-    for (var i = 1; i < adaptersSelected.length - 1; i++) {
-        var ableToRemove = false;
+    for (let i = 1; i < adaptersSelected.length - 1; i++) {
+        let ableToRemove = false;
         if (adaptersSelected[i + 1] - adaptersSelected[i - 1] < 4)
             ableToRemove = true;
     }
     ;
     diffsOf3++;
-    var contiguos = [1];
-    var contiguosIndex = 0;
+    let contiguos = [1];
+    let contiguosIndex = 0;
     console.log(adaptersSelected);
-    var resolvea = 1;
-    for (var i = 0; i < adaptersSelected.length - 1; i++) {
-        var currentVal = adaptersSelected[i];
-        var diff = adaptersSelected[i + 1] - currentVal;
+    let resolvea = 1;
+    for (let i = 0; i < adaptersSelected.length - 1; i++) {
+        let currentVal = adaptersSelected[i];
+        let diff = adaptersSelected[i + 1] - currentVal;
         if (diff == 1)
             contiguos[contiguosIndex]++;
         if (diff > 1) {
@@ -55,7 +55,7 @@ function puzzle10b(input) {
     }
     ;
     console.log(contiguos);
-    for (var i = 0; i < contiguosIndex + 1; i++) {
+    for (let i = 0; i < contiguosIndex + 1; i++) {
         if (contiguos[i] > 2) {
             if (contiguos[i] == 3)
                 resolvea = resolvea * 2;
@@ -70,15 +70,15 @@ function puzzle10b(input) {
 }
 ;
 function loadNumberArrayFromInput(fileName) {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/' + fileName + '.txt').toString().split("\r\n");
-    var aux = [];
-    myLines.forEach(function (currentItem) {
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/' + fileName + '.txt').toString().split("\r\n");
+    let aux = [];
+    myLines.forEach(currentItem => {
         aux.push(parseInt(currentItem));
     });
     return aux;
 }
 ;
-var inputDay10UnsortedInString = loadNumberArrayFromInput('inputDay10');
-inputDay10UnsortedInString.sort(function (a, b) { return a - b; });
+const inputDay10UnsortedInString = loadNumberArrayFromInput('inputDay10');
+inputDay10UnsortedInString.sort((a, b) => a - b);
 console.log(puzzle10b(inputDay10UnsortedInString));

@@ -1,23 +1,22 @@
 function puzzleDay8a() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay8.txt').toString().split("\r\n");
-    var SingleInstruction = /** @class */ (function () {
-        function SingleInstruction(ins, par) {
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay8.txt').toString().split("\r\n");
+    class SingleInstruction {
+        constructor(ins, par) {
             this.instruction = ins;
             this.parameter = par;
         }
-        return SingleInstruction;
-    }());
+    }
     ;
-    var myInstructions = [];
-    myLines.forEach(function (currentItem) {
+    let myInstructions = [];
+    myLines.forEach(currentItem => {
         currentItem = currentItem.trim();
-        var splittedIns = currentItem.split(' ');
-        var instructionToAdd = new SingleInstruction(splittedIns[0], parseInt(splittedIns[1]));
+        let splittedIns = currentItem.split(' ');
+        let instructionToAdd = new SingleInstruction(splittedIns[0], parseInt(splittedIns[1]));
         myInstructions.push(instructionToAdd);
     }); //The saving is correct.
-    var lineChecker = [];
-    myInstructions.forEach(function (currentItem) {
+    let lineChecker = [];
+    myInstructions.forEach(currentItem => {
         lineChecker.push(false);
     }); //initialize lineChecker with false for each of my instructions.
     function simulateCode(index, acum) {
@@ -35,7 +34,7 @@ function puzzleDay8a() {
                     case 'acc':
                         return simulateCode(index + 1, acum + myInstructions[index].parameter);
                     case 'jmp':
-                        var nextIndex = index + myInstructions[index].parameter;
+                        let nextIndex = index + myInstructions[index].parameter;
                         /*if (lineChecker[nextIndex]){
                             myInstructions[index].instruction = 'nop';
                             lineChecker[index] = false;

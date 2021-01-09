@@ -1,19 +1,19 @@
 function puzzleDay7b() {
-    var fs = require('fs');
-    var myLines = fs.readFileSync('./input/inputDay7.txt').toString().split("\r\n");
-    var myBags = new Map();
-    var myBagsQuantity = new Map();
-    myLines.forEach(function (currentItem) {
-        var firstSplit = currentItem.split(' contain ');
-        var bagName = firstSplit[0].replace(' bags', ' bag');
-        var bagContentsPreSplit = firstSplit[1];
-        var bagContentsPre = bagContentsPreSplit.split(', ');
-        var bagContents = [];
-        var numberOfBags = [];
-        for (var i = 0; i < bagContentsPre.length; i++) {
-            var currentSubBag = bagContentsPre[i];
+    let fs = require('fs');
+    let myLines = fs.readFileSync('./input/inputDay7.txt').toString().split("\r\n");
+    let myBags = new Map();
+    let myBagsQuantity = new Map();
+    myLines.forEach(currentItem => {
+        let firstSplit = currentItem.split(' contain ');
+        let bagName = firstSplit[0].replace(' bags', ' bag');
+        let bagContentsPreSplit = firstSplit[1];
+        let bagContentsPre = bagContentsPreSplit.split(', ');
+        let bagContents = [];
+        let numberOfBags = [];
+        for (let i = 0; i < bagContentsPre.length; i++) {
+            let currentSubBag = bagContentsPre[i];
             currentSubBag = currentSubBag.trim();
-            var aux = currentSubBag.split(' ');
+            let aux = currentSubBag.split(' ');
             numberOfBags.push(parseInt(aux[0]));
             currentSubBag = currentSubBag.replace(/\d+/g, '');
             currentSubBag = currentSubBag.replace('.', '');
@@ -21,7 +21,7 @@ function puzzleDay7b() {
             currentSubBag = currentSubBag.trim();
             bagContents.push(currentSubBag);
             if (currentSubBag == 'no other bag') {
-                var a = numberOfBags.pop();
+                let a = numberOfBags.pop();
                 numberOfBags.push(-1);
             }
         }
@@ -34,14 +34,14 @@ function puzzleDay7b() {
             return 1;
         }
         else {
-            var allMyBags = myBags.get(bagToStart);
-            var allMyBagsQuantity = myBagsQuantity.get(bagToStart);
-            var res = 1;
-            for (var i = 0; i < allMyBags.length; i++) {
-                var currentBag = allMyBags[i];
-                var currentBagQuantity = allMyBagsQuantity[i];
+            let allMyBags = myBags.get(bagToStart);
+            let allMyBagsQuantity = myBagsQuantity.get(bagToStart);
+            let res = 1;
+            for (let i = 0; i < allMyBags.length; i++) {
+                let currentBag = allMyBags[i];
+                let currentBagQuantity = allMyBagsQuantity[i];
                 console.log('The current bag to sum is : ' + currentBag + ' and the quantity is : ' + currentBagQuantity);
-                var a = currentBagQuantity * countBagsInside(currentBag);
+                let a = currentBagQuantity * countBagsInside(currentBag);
                 res = res + a;
             }
             ;
