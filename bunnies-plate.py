@@ -1,5 +1,5 @@
 def solution(l):
-    def numbersToStrings(intlist: list[int]):
+    def numbersToStrings(intlist):
         result = []
         for number in intlist:
             result.append(str(number))
@@ -26,7 +26,7 @@ def solution(l):
         solutions = []
 
         for i in range(len(l)):
-            aux = l.copy()
+            aux = list(l)
             l.__delitem__(i)
             sol = solution(l)
             if sol and sol != 0:
